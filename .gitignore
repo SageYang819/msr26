@@ -8,3 +8,4 @@ script/.vscode/
 _backup_outputs/
 _trash/
 paper/
+.DS_Store
