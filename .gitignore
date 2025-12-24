@@ -1,1 +1,9 @@
 .env
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+script/.venv/
+script/.vscode/
+_backup_outputs/
+_trash/

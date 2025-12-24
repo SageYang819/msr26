@@ -1,0 +1,33 @@
+RQ2 Stats Summary
+High-cost definition: total_cost >= 3.000 (q=0.75; override_thr=no)
+Sample size: n=33596, overall_high_cost_rate=0.256
+
+Logistic (inference, not prediction)
+Model: is_high_cost ~ C(agent) * C(scenario_label)
+LR test (interaction vs main-effects): LR=990.334, df=8, p=<1e-4
+Top interaction terms (by p): saved=/Users/young/MSR/script/outputs/rq2_logit_interactions_top.csv
+
+Chi-square by scenario (agent x high_cost)
+Saved: /Users/young/MSR/script/outputs/rq2_chi2_by_scenario.csv
+- S0_Solo_agent: n=11065, chi2=2444.009, dof=4, p=<1e-4, Cramer's V=0.470
+- S1_Human_reviewed: n=4205, chi2=451.242, dof=4, p=<1e-4, Cramer's V=0.328
+- S2_Human_coedited: n=18326, chi2=8204.514, dof=4, p=<1e-4, Cramer's V=0.669
+
+Chi-square on (agent|scenario) combos vs high_cost
+- combos_k=15, n=33596, chi2=16015.884, dof=14, p=<1e-4, Cramer's V=0.690
+
+Top-risk (agent, scenario) combos
+Filter: n >= 50, top_k=10
+- Copilot | S2_Human_coedited: rate=0.882 (high_cost_n=1312, n=1487), lift=3.441
+- Devin | S1_Human_reviewed: rate=0.875 (high_cost_n=1349, n=1541), lift=3.414
+- Devin | S2_Human_coedited: rate=0.785 (high_cost_n=1077, n=1372), lift=3.062
+- Copilot | S1_Human_reviewed: rate=0.742 (high_cost_n=1525, n=2056), lift=2.893
+- Cursor | S2_Human_coedited: rate=0.662 (high_cost_n=315, n=476), lift=2.581
+- Cursor | S1_Human_reviewed: rate=0.609 (high_cost_n=171, n=281), lift=2.373
+- Claude_Code | S2_Human_coedited: rate=0.593 (high_cost_n=150, n=253), lift=2.312
+- Devin | S0_Solo_agent: rate=0.422 (high_cost_n=808, n=1914), lift=1.646
+- Claude_Code | S1_Human_reviewed: rate=0.389 (high_cost_n=21, n=54), lift=1.517
+- OpenAI_Codex | S1_Human_reviewed: rate=0.333 (high_cost_n=91, n=273), lift=1.300
+
+Saved: /Users/young/MSR/script/outputs/rq2_top_risk_agent_x_scenario.csv
+Saved: /Users/young/MSR/script/outputs/rq2_logit_coefficients.csv

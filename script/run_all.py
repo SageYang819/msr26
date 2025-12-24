@@ -1,23 +1,28 @@
+# run_all.py
+import subprocess
+import sys
 from pathlib import Path
-import shutil
 
-def _collect_outputs():
-    root = Path(__file__).resolve().parents[1]
-    out_dir = root / "script" / "outputs"
-    data_dir = root / "data"
-    plots_dir = root / "plots"
+ROOT = Path(__file__).resolve().parent
 
-    data_dir.mkdir(parents=True, exist_ok=True)
-    plots_dir.mkdir(parents=True, exist_ok=True)
+def run(cmd):
+    print("\n$", " ".join(cmd))
+    subprocess.check_call(cmd, cwd=ROOT)
 
-    # CSV -> data/
-    for p in out_dir.glob("*.csv"):
-        shutil.move(str(p), str(data_dir / p.name))
+def main():
+    run([sys.executable, "rq_load_mysql.py"])
+    run([sys.executable, "rq_extract_sql.py"])
 
-    # TXT -> data/
-    for p in out_dir.glob("*.txt"):
-        shutil.move(str(p), str(data_dir / p.name))
+    run([sys.executable, "rq1_outputs.py"])
 
-    # PNG -> plots/
-    for p in out_dir.glob("*.png"):
-        shutil.move(str(p), str(plots_dir / p.name))
+    run([sys.executable, "rq2_outputs.py"])
+    run([sys.executable, "rq2_stats.py"])
+
+    run([sys.executable, "rq3_train.py"])
+    run([sys.executable, "rq3_outputs.py"])
+    run([sys.executable, "rq3_agent_prior_table.py"])
+
+    print("\nALL DONE")
+
+if __name__ == "__main__":
+    main()
