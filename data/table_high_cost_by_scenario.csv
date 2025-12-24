@@ -1,0 +1,4 @@
+scenario_label,n,high_cost_n,high_cost_rate
+S0_Solo_agent,11065,549,0.04961590600994126
+S1_Human_reviewed,4205,2551,0.6066587395957194
+S2_Human_coedited,18326,3619,0.19747899159663865
