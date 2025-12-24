@@ -35,7 +35,7 @@ The analysis uses:
 ```bash
 conda create -n msr python=3.11 -y
 conda activate msr
-cd /Users/young/MSR
+cd <REPO_ROOT>
 ```
 
 (If you cloned this repository to a different path, replace `/Users/young/MSR`
@@ -82,7 +82,7 @@ Once the environment and `.env` are configured:
 
 ```bash
 conda activate msr
-cd /Users/young/MSR
+cd <REPO_ROOT>
 python -u script/run_all.py
 ```
 
